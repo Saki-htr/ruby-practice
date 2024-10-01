@@ -18,7 +18,6 @@ else
 end
 
 first_date = Date.new(year, month, 1)
-p first_date
 last_date = Date.new(year, month, -1)
 
 # 1日の曜日によって空白の数を変える
@@ -28,7 +27,9 @@ last_date = Date.new(year, month, -1)
 # ...
 # 1日が土曜なら空白6つ分右にずれる
 
-count = if first_date.monday?
+count = if first_date.sunday?
+          0
+        elsif  first_date.monday?
           1
         elsif first_date.tuesday?
           2
@@ -41,14 +42,15 @@ count = if first_date.monday?
         elsif first_date.saturday?
           6
         end
-
+space = "\s" * count * 3
 
 # 表示
 puts "#{month}月 #{year}".center(20)
 puts "日 月 火 水 木 金 土"
 
+print space
 (first_date..last_date).each do |date|
-  if date.sunday?
+  if date.saturday?
     print "#{date.day}".rjust(2)
     print "\s"
     print "\n"
