@@ -4,14 +4,14 @@ require 'optparse'
 # オプション引数
 params = ARGV.getopts("m:", "y:")
 
+date = Date.today
 if params['m'] && params['y']
   month = params['m'].to_i
   year = params['y'].to_i
 elsif params['m']
   month = params['m'].to_i
-  year = Date.today.year
+  year = date.year
 else
-  date = Date.today
   month = date.month
   year = date.year
 end
