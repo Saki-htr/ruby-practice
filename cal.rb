@@ -3,7 +3,6 @@ require 'optparse'
 
 # オプション引数
 params = ARGV.getopts("m:", "y:")
-p params #=> {"m"=>"2", "y"=>"2025"} / {"m"=>nil, "y"=>nil}
 
 if params['m'] && params['y']
   month = params['m'].to_i
@@ -19,13 +18,6 @@ end
 
 first_date = Date.new(year, month, 1)
 last_date = Date.new(year, month, -1)
-
-# 1日の曜日によって空白の数を変える
-# 1日が日曜なら空白無し
-# 1日が月曜なら空白1つ分右にずれる
-# 1日が火曜なら空白2つ分右にずれる
-# ...
-# 1日が土曜なら空白6つ分右にずれる
 
 count = if first_date.sunday?
           0
@@ -61,6 +53,3 @@ print space
 end
 
 puts "\s"
-
-
-
