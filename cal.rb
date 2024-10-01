@@ -19,21 +19,7 @@ end
 first_date = Date.new(year, month, 1)
 last_date = Date.new(year, month, -1)
 
-count = if first_date.sunday?
-          0
-        elsif  first_date.monday?
-          1
-        elsif first_date.tuesday?
-          2
-        elsif first_date.wednesday?
-          3
-        elsif first_date.thursday?
-          4
-        elsif first_date.friday?
-          5
-        elsif first_date.saturday?
-          6
-        end
+count = first_date.wday
 space = "\s" * count * 3
 
 # 表示
@@ -53,3 +39,4 @@ print space
 end
 
 puts "\s"
+puts "\n"
