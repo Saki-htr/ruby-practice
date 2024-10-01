@@ -1,10 +1,24 @@
 require 'date'
+require 'optparse'
 
-date = Date.today
-month = date.month
-year = date.year
+# オプション引数
+params = ARGV.getopts("m:", "y:")
+p params #=> {"m"=>"2", "y"=>"2025"} / {"m"=>nil, "y"=>nil}
+
+if params['m'] && params['y']
+  month = params['m'].to_i
+  year = params['y'].to_i
+elsif params['m']
+  month = params['m'].to_i
+  year = Date.today.year
+else
+  date = Date.today
+  month = date.month
+  year = date.year
+end
 
 first_date = Date.new(year, month, 1)
+p first_date
 last_date = Date.new(year, month, -1)
 
 # 1日の曜日によって空白の数を変える
@@ -27,14 +41,12 @@ count = if first_date.monday?
         elsif first_date.saturday?
           6
         end
-a = "\s" * count + "\s"
 
 
 # 表示
 puts "#{month}月 #{year}".center(20)
 puts "日 月 火 水 木 金 土"
 
-print a
 (first_date..last_date).each do |date|
   if date.sunday?
     print "#{date.day}".rjust(2)
