@@ -37,8 +37,8 @@ frames.each_with_index do |frame, index|
     elsif frames[index + 1] != [10,0]
       point = point + 10 + frames[index + 1][0] + frames[index + 1][1]
     end
-  # spare
-  elsif frame.sum == 10
+  # spare && 1-9フレーム目
+  elsif frame.sum == 10 && index != 9
     point = point + frame.sum + frames[index + 1][0]
   else
     point += frame.sum
